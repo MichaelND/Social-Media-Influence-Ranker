@@ -8,7 +8,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Social Media Influence Ranker';
   msg = ""
+
   Login() {
-    this.msg = "clicked"
+    this.msg = 'hi'
   }
 }

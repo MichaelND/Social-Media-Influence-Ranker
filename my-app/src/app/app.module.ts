@@ -15,6 +15,3 @@ import { AppComponent } from './app.component';
 })
 export class AppModule { }
 
-function Login() {
-	document.getElementById('tweet_id').src = 'hi'
-}
