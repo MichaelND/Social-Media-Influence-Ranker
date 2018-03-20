@@ -16,4 +16,5 @@ def get_influence():
 	user_id = request.args.get("userid")
 	print(request.data)
 	results = rank_friends(user_id, M)
+	print(results)
 	return jsonify(influence_list=results)

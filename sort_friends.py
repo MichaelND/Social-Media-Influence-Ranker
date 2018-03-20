@@ -52,11 +52,10 @@ def rank_friends(user, M):
 		for user in friend_tuple:
 			model_input += [user['followers'], user['following'], user['listed'], user['posts']]
 		data.append(model_input)
-	print(data)
 	model_output = M.predict(data)
 
 	for i, m in enumerate(model_output):
-		if not m:
+		if m:
 			f = friends_perms[i][0]
 		else:
 			f = friends_perms[i][1]
@@ -68,7 +67,7 @@ def rank_friends(user, M):
 		unsorted_users.append((val,key))
 	sorted_users = sorted(unsorted_users, reverse=True)
 	#print("sorted: ", sorted_users)
-	return [i[1] for i in sorted_users]
+	return [(i[1][0], friends_win_counts[i[1]]) for i in sorted_users]
 
 
 # if __name__ == '__main__':
