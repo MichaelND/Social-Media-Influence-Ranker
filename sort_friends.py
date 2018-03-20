@@ -32,7 +32,6 @@ def model_function(temp_list):
 
 def rank_friends(user, M):
 	global api
-	
 	friends_win_counts = defaultdict(lambda: 0)
 	friends_info = [get_user_data(user)]
 	friends = api.friends_ids()
@@ -53,8 +52,8 @@ def rank_friends(user, M):
 		for user in friend_tuple:
 			model_input += [user['followers'], user['following'], user['listed'], user['posts']]
 		data.append(model_input)
-	
-	model_output = model_function(data)
+	print(data)
+	model_output = M.predict(data)
 
 	for i, m in enumerate(model_output):
 		if not m:
@@ -72,6 +71,6 @@ def rank_friends(user, M):
 	return [i[1] for i in sorted_users]
 
 
-if __name__ == '__main__':
-	M = model()
-	print("final: ", rank_friends('869387300291182592', M))
+# if __name__ == '__main__':
+# 	M = model()
+# 	print("final: ", rank_friends('869387300291182592', M))

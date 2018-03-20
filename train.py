@@ -29,7 +29,7 @@ class model():
 		self.clf = clf
 
 	def predict(self, data):
-		return self.clf.predict([data])[0]
+		return self.clf.predict(data)
 
 
 
