@@ -33,8 +33,7 @@ angular.module('recommenderApp')
                 //     //     tweet_list[i] = data[i]["text"]
                 //     // }
                 twitterService.getUserInfo().then(function(data) {
-                    var user_name = data["name"];
-                    var userid = data["id"]
+                    var user_name = data["screen_name"];
                     $scope.u_name = data["screen_name"]
                     $scope.u_friends = data["friends_count"]
                     $scope.u_followers = data["followers_count"]
@@ -52,10 +51,11 @@ angular.module('recommenderApp')
                     //     })
                     // }
                     // user_tweet = angular.toJson(tweet_list)
+    
                     $.ajax({
-                        url: 'http://localhost:5000/influence/',
+                        url: 'http://127.0.0.1:5000/influence',
                         type: "get",
-                        data: {"userid": userid}, 
+                        data: {"userid": user_name}, 
                         success: function(response) {
                             $scope.$apply(function() {
                                 console.log(response)
@@ -64,6 +64,9 @@ angular.module('recommenderApp')
                         },
                         error: function(xhr, err, errmsg) {
                             console.log(errmsg)
+                            $scope.$apply(function() {
+                                $scope.influence_list = [["fuck", 2, 0, 1], ["shit", 2, 0, 1]]
+                            })
                         }
                     })
                     // $scope.influence_list = [];
