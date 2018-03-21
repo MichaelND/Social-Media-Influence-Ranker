@@ -1,0 +1,35 @@
+<div class="container" ng-controller="recommenderController">
+        <div class="row">
+            <div class="col-xs-6">
+                <button ng-click="connectButton()" id="connectButton" type="button" class="cyan lighten-1 waves-effect waves-light btn" style="margin-top: 6em;">Login to Twitter</button>
+                <button ng-click="signOut()" id="signOut" type="button" class="pink accent-3 waves-effect waves-light btn"" style="margin-top: 6em; display:none;">Sign Out</button>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12" id="results">
+                <h5>Leaderboard</h5>
+                    <!-- <ul class="collection" style="margin-bottom: 4em;">
+                        <li class="collection-item avatar">
+                          <i class="material-icons circle amber darken-1">{{u_rank}}</i>
+                          <span class="title">Name: {{u_name}}</span>
+                          <p>Followers: {{u_followers}} <br>
+                             Friends: {{u_friends}}
+                          </p>
+                        </li>
+                    </ul> -->
+                    <ul class="collection" ng-repeat = "x in influence_list">
+                        <li class="collection-item avatar">
+         <!--                  <i class="material-icons circle cyan lighten-2">{{x.iter + 1}}</i> -->
+                          <span class="title">Name: {{x[0]}}</span>
+                          <p>Followers: {{x[2]}}<br>
+                             Friends: {{x[3]}}
+                          </p>
+                        </li>
+                    </ul>
+                <div ng-show="rateLimitError">
+                    Rate limit reached. You are making too many requests.
+                </div>
+            </div>
+        </div>
+    </div>
