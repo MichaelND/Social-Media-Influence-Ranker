@@ -64,9 +64,6 @@ angular.module('recommenderApp')
                         },
                         error: function(xhr, err, errmsg) {
                             console.log(errmsg)
-                            $scope.$apply(function() {
-                                $scope.influence_list = [["fuck", 2, 0, 1], ["shit", 2, 0, 1]]
-                            })
                         }
                     })
                     // $scope.influence_list = [];
