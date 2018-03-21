@@ -12,6 +12,7 @@ def hello_world():
 
 
 @app.route('/influence', methods = ['GET'])
+@crossdomain(origin='*')
 def get_influence():
 	user_id = request.args.get("userid")
 	print(request.data)
