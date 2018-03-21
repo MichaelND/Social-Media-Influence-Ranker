@@ -32,28 +32,29 @@ def model_function(temp_list):
 
 def rank_friends(user, M):
 	global api
-	friends_win_counts = defaultdict(lambda: 0)
 	friends_info = [get_user_data(user)]
-	friends = api.friends_ids()
+
+	friends = api.friends_ids(user)
 	for friend in friends['ids']:
 		try:
 			friends_info.append(get_user_data(friend))
 		except tweepy.error.TweepError:
 			print("Friend account not found skipping... ", friends)
 	friends_perms = []
+	# print(friends_info)
 	for u1 in range(len(friends_info)-1):
 		for u2 in range(u1+1,len(friends_info)):
 			temp_tuple = (friends_info[u1], friends_info[u2])
 			friends_perms.append(temp_tuple)
-
+	print(friends_perms)
 	data = []
 	for friend_tuple in friends_perms:
 		model_input = []
-		for user in friend_tuple:
-			model_input += [user['followers'], user['following'], user['listed'], user['posts']]
+		for u in friend_tuple:
+			model_input += [u['followers'], u['following'], u['listed'], u['posts']]
 		data.append(model_input)
 	model_output = M.predict(data)
-
+	friends_win_counts = {(u['name'], u['following'], u['followers']): 0 for u in friends_info}
 	for i, m in enumerate(model_output):
 		if m:
 			f = friends_perms[i][0]
