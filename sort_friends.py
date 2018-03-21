@@ -67,7 +67,7 @@ def rank_friends(user, M):
 		unsorted_users.append((val,key))
 	sorted_users = sorted(unsorted_users, reverse=True)
 	#print("sorted: ", sorted_users)
-	return [(i[1][0], friends_win_counts[i[1]]) for i in sorted_users]
+	return [(i[1][0], friends_win_counts[i[1]], i[1][1], i[1][2]) for i in sorted_users]
 
 
 # if __name__ == '__main__':
