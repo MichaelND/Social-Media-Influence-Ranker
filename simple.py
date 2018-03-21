@@ -14,8 +14,11 @@ def hello_world():
 @app.route('/influence', methods = ['GET'])
 @crossdomain(origin='*')
 def get_influence():
-	user_id = request.args.get("userid")
 	print(request.data)
+	user_id = request.args.get("userid")
 	results = rank_friends(user_id, M)
 	print(results)
 	return jsonify(influence_list=results)
+
+if __name__ == '__main__':
+    app.run()
