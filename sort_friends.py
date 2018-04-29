@@ -3,6 +3,7 @@ import tweepy
 from collections import defaultdict
 import random
 from train import model
+import numpy as np
 
 CONSUMER_KEY = 'ezeJc9OIdOfQqCeIh3L6oZhyv'
 CONSUMER_SECRET = 'WYtZpuAGjAzVYrlNFtMfyX9N7pbfQNWv86ddagimPTtFF3XIMF'
@@ -78,6 +79,9 @@ def sort_list(users, M):
 			users_info.append(get_user_data(user))
 		except tweepy.error.TweepError:
 			print("User account not found skipping... ", user)
+	if len(users_info) == 1:	
+		u = users_info[0]
+		return [(u["name"], 0, u['following'], u['followers'])]
 	users_perms = []
 	for u1 in range(len(users_info)-1):
 		for u2 in range(u1+1,len(users_info)):

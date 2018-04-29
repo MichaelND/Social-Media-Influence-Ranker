@@ -23,9 +23,9 @@ def get_influence():
 @app.route('/sort', methods = ['GET'])
 @crossdomain(origin='*')
 def get_influences():
-	print(request.data)
-	j = json.loads(request.data)
-	results = sort_list(j["userids"], M)
+	userids = json.loads(request.args.get("userids"))
+	print(userids)
+	results = sort_list(userids, M)
 	print(results)
 	return jsonify(influence_list=results)
 if __name__ == '__main__':
