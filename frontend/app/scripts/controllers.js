@@ -26,8 +26,23 @@ angular.module('recommenderApp')
         console.log($scope.user_ids);
     }
     //when the user decides when they want to submit the list to be ranked
-    $scope.submit = function() {
-        //TODO
+    $scope.submitform = function() {
+        console.log($scope.user_ids)
+        $.ajax({
+            url: 'http://127.0.0.1:5000/sort',
+            type: "get",
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({"userids": $scope.user_ids}), 
+            success: function(response) {
+                $scope.$apply(function() {
+                    console.log(response)
+                    $scope.influence_list = response["influence_list"];
+                })
+            },
+            error: function(xhr, err, errmsg) {
+                console.log(errmsg)
+            }
+        })
     }
 
     //when the user clicks the connect twitter button, the popup authorization window opens
