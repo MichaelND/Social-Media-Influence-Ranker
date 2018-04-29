@@ -70,7 +70,43 @@ def rank_friends(user, M):
 	#print("sorted: ", sorted_users)
 	return [(i[1][0], friends_win_counts[i[1]], i[1][1], i[1][2]) for i in sorted_users]
 
+def sort_list(users, M):
+	global api
+	users_info = []
+	for user in users:
+		try:
+			users_info.append(get_user_data(user))
+		except tweepy.error.TweepError:
+			print("Friend account not found skipping... ", friends)
+	users_perms = []
+	for u1 in range(len(users_info)-1):
+		for u2 in range(u1+1,len(users_info)):
+			temp_tuple = (users_info[u1], users_info[u2])
+			users_perms.append(temp_tuple)
+	print(users_perms)
+	data = []
+	for user_tuple in users_perms:
+		model_input = []
+		for u in user_tuple:
+			model_input += [u['followers'], u['following'], u['listed'], u['posts']]
+		data.append(model_input)
+	model_output = M.predict(data)
+	users_win_counts = {(u['name'], u['following'], u['followers']): 0 for u in users_info}
+	for i, m in enumerate(model_output):
+		if m:
+			f = users_perms[i][0]
+		else:
+			f = users_perms[i][1]
+		users_win_counts[(f['name'],f['following'],f['followers'])] += 1
 
-# if __name__ == '__main__':
+
+	unsorted_users = []
+	for key,val in users_win_counts.items():
+		unsorted_users.append((val,key))
+	sorted_users = sorted(unsorted_users, reverse=True)
+	#print("sorted: ", sorted_users)
+	return [(i[1][0], users_win_counts[i[1]], i[1][1], i[1][2]) for i in sorted_users]
+
+#if __name__ == '__main__':
 # 	M = model()
 # 	print("final: ", rank_friends('869387300291182592', M))
