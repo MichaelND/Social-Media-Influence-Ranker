@@ -77,7 +77,7 @@ def sort_list(users, M):
 		try:
 			users_info.append(get_user_data(user))
 		except tweepy.error.TweepError:
-			print("Friend account not found skipping... ", friends)
+			print("User account not found skipping... ", user)
 	users_perms = []
 	for u1 in range(len(users_info)-1):
 		for u2 in range(u1+1,len(users_info)):
