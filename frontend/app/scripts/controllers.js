@@ -31,8 +31,9 @@ angular.module('recommenderApp')
         $.ajax({
             url: 'http://127.0.0.1:5000/sort',
             type: "get",
-            contentType: 'application/json;charset=UTF-8',
-            data: JSON.stringify({"userids": $scope.user_ids}), 
+            // contentType: 'application/json',
+            crossDomain: true,
+            data: {"userids": JSON.stringify($scope.user_ids)}, 
             success: function(response) {
                 $scope.$apply(function() {
                     console.log(response)
