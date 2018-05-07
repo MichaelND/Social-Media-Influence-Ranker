@@ -8,6 +8,6 @@ To run the frontend, go into the /frontend folder and run:
 	
 	python -m SimpleHTTPServer
 
-goto the web page http://localhost:<port>, and select "app" on that page.
+goto the web page http://localhost:<port_number>, and select "app" on that page.
 
 
