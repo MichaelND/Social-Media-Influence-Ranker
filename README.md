@@ -10,4 +10,13 @@ To run the frontend, go into the /frontend folder and run:
 
 goto the web page http://localhost:<port_number>, and select "app" on that page.
 
+Required Packages:
 
+	Scikit-learn
+	
+	Pandas
+	
+	Numpy
+	
+	Angular.js
+	
