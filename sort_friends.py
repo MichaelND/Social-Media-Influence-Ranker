@@ -47,7 +47,7 @@ def rank_friends(user, M):
 		for u2 in range(u1+1,len(friends_info)):
 			temp_tuple = (friends_info[u1], friends_info[u2])
 			friends_perms.append(temp_tuple)
-	print(friends_perms)
+	#print(friends_perms)
 	data = []
 	for friend_tuple in friends_perms:
 		model_input = []
@@ -87,7 +87,7 @@ def sort_list(users, M):
 		for u2 in range(u1+1,len(users_info)):
 			temp_tuple = (users_info[u1], users_info[u2])
 			users_perms.append(temp_tuple)
-	print(users_perms)
+	#print(users_perms)
 	data = []
 	for user_tuple in users_perms:
 		model_input = []
